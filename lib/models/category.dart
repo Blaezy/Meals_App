@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//This file is the basic model of the items ti be included. It hold the very basic properties of all the items.
 
 class Category {
   final String id;
