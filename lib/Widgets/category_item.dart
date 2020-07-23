@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './category_meal_screen.dart';
+import '../screen/category_meal_screen.dart';
 // This file is the widget which would be called for every single items to hold data on screen.
 
 class CategoryItem extends StatelessWidget {
@@ -9,8 +9,8 @@ class CategoryItem extends StatelessWidget {
   const CategoryItem(this.id, this.title, this.color);
 
   void SelectCategory(BuildContext context) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (_) => CategoryMealScreen(id, title)));
+    Navigator.of(context).pushNamed(CategoryMealScreen.routeName,
+        arguments: {'id': id, 'title': title});
   }
 
   @override
