@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'screen/category_screen.dart';
-import 'screen/category_meal_screen.dart';
+import './screen/meal_screen_details.dart';
+import './screen/category_screen.dart';
+import './screen/category_meal_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -25,7 +26,10 @@ class MyApp extends StatelessWidget {
       ),
       home:
           CategoryScreen(), //this is the entry point of the the app means the first screen which will appear when app starts.
-      routes: {CategoryMealScreen.routeName: (ctx) => CategoryMealScreen()},
+      routes: {
+        CategoryMealScreen.routeName: (ctx) => CategoryMealScreen(),
+        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+      },
     );
   }
 }
