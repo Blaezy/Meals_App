@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:meal/screen/filter_Screen.dart';
+import './screen/tabs_screen.dart';
 import './screen/meal_screen_details.dart';
-import './screen/category_screen.dart';
 import './screen/category_meal_screen.dart';
 
 void main() => runApp(MyApp());
@@ -25,10 +26,11 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.bold)),
       ),
       home:
-          CategoryScreen(), //this is the entry point of the the app means the first screen which will appear when app starts.
+          TabsScreen(), //this is the entry point of the the app means the first screen which will appear when app starts.
       routes: {
         CategoryMealScreen.routeName: (ctx) => CategoryMealScreen(),
         MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
+        FiltersScreen.routeName: (ctx) => FiltersScreen(),
       },
     );
   }
