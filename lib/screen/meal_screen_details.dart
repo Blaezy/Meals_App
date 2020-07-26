@@ -32,49 +32,55 @@ class MealDetailScreen extends StatelessWidget {
     final mealID = ModalRoute.of(context).settings.arguments as String;
     final SelectedMeal = DUMMY_MEALS.firstWhere((meal) => meal.id == mealID);
     return Scaffold(
-        appBar: AppBar(title: Text(SelectedMeal.title)),
-        body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: 300,
-                width: double.infinity,
-                child: Image.network(
-                  SelectedMeal.imageUrl,
-                  fit: BoxFit.cover,
-                ),
+      appBar: AppBar(title: Text(SelectedMeal.title)),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 300,
+              width: double.infinity,
+              child: Image.network(
+                SelectedMeal.imageUrl,
+                fit: BoxFit.cover,
               ),
-              BuildSectionTitle(context, 'Ingredients'),
-              BuildStepsContent(ListView.builder(
-                itemBuilder: (ctx, index) {
-                  return Card(
-                      child: Padding(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                          child: Text(SelectedMeal.ingredients[index])),
-                      color: Theme.of(context).accentColor);
-                },
-                itemCount: SelectedMeal.ingredients.length,
-              )),
-              BuildSectionTitle(context, 'Steps'),
-              BuildStepsContent(ListView.builder(
-                itemBuilder: (ctx, index) {
-                  return Column(
-                    children: <Widget>[
-                      ListTile(
-                        leading: CircleAvatar(
-                          child: Text('# ${(index + 1)}'),
-                        ),
-                        title: Text(SelectedMeal.steps[index]),
+            ),
+            BuildSectionTitle(context, 'Ingredients'),
+            BuildStepsContent(ListView.builder(
+              itemBuilder: (ctx, index) {
+                return Card(
+                    child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                        child: Text(SelectedMeal.ingredients[index])),
+                    color: Theme.of(context).accentColor);
+              },
+              itemCount: SelectedMeal.ingredients.length,
+            )),
+            BuildSectionTitle(context, 'Steps'),
+            BuildStepsContent(ListView.builder(
+              itemBuilder: (ctx, index) {
+                return Column(
+                  children: <Widget>[
+                    ListTile(
+                      leading: CircleAvatar(
+                        child: Text('# ${(index + 1)}'),
                       ),
-                      Divider()
-                    ],
-                  );
-                },
-                itemCount: SelectedMeal.steps.length,
-              ))
-            ],
-          ),
-        ));
+                      title: Text(SelectedMeal.steps[index]),
+                    ),
+                    Divider()
+                  ],
+                );
+              },
+              itemCount: SelectedMeal.steps.length,
+            )),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.delete),
+          onPressed: () {
+            Navigator.of(context).pop(mealID);
+          }), //to delete already visited items from the previous screen we need to pass selected meal ID to pop
+    );
   }
 }
