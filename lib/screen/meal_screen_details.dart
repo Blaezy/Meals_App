@@ -3,6 +3,9 @@ import 'package:meal/dummy_data.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const routeName = "/meal-detail";
+  final Function toggleFavourite;
+  final Function isMealFavourite;
+  MealDetailScreen(this.toggleFavourite, this.isMealFavourite);
 
   Widget BuildSectionTitle(BuildContext context, String text) {
     return Container(
@@ -77,10 +80,12 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.delete),
-          onPressed: () {
+        child: Icon(isMealFavourite(mealID) ? Icons.star : Icons.star_border),
+        onPressed: () => toggleFavourite(mealID),
+        /*() {
             Navigator.of(context).pop(mealID);
-          }), //to delete already visited items from the previous screen we need to pass selected meal ID to pop
+          }*/
+      ), //to delete already visited items from the previous screen we need to pass selected meal ID to pop
     );
   }
 }

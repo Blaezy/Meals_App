@@ -6,6 +6,8 @@ import '../models/meal.dart';
 class CategoryMealScreen extends StatefulWidget {
   //since we want to cahnge the meals which we display hence convertion to stateful widget
   static const routeName = '/Category-Meals';
+  final List<Meal> availableMeals;
+  CategoryMealScreen(this.availableMeals);
 
   @override
   _CategoryMealScreenState createState() => _CategoryMealScreenState();
@@ -24,11 +26,12 @@ class _CategoryMealScreenState extends State<CategoryMealScreen> {
           ModalRoute.of(context).settings.arguments as Map<String, String>;
       CategoryTitle = routeArgs['title'];
       final CategoryId = routeArgs['id'];
-      CategoryMeals = DUMMY_MEALS.where((Meals) {
+      CategoryMeals = widget.availableMeals.where((Meals) {
         //Filtering the meals based on the category ID and storing as a list in Category Meals
         return Meals.categories.contains(
             CategoryId); //where is used as a conditional satetment with categories and contains as a helper
       }).toList();
+      loadedInitData = true;
     }
     super.didChangeDependencies();
   }
@@ -48,13 +51,13 @@ class _CategoryMealScreenState extends State<CategoryMealScreen> {
       body: ListView.builder(
         itemBuilder: (ctx, index) {
           return MealItem(
-              id: CategoryMeals[index].id,
-              title: CategoryMeals[index].title,
-              url: CategoryMeals[index].imageUrl,
-              complexity: CategoryMeals[index].complexity,
-              affordability: CategoryMeals[index].affordability,
-              duration: CategoryMeals[index].duration,
-              removeItem: removeItem);
+            id: CategoryMeals[index].id,
+            title: CategoryMeals[index].title,
+            url: CategoryMeals[index].imageUrl,
+            complexity: CategoryMeals[index].complexity,
+            affordability: CategoryMeals[index].affordability,
+            duration: CategoryMeals[index].duration,
+          );
         },
         itemCount: CategoryMeals.length,
       ),

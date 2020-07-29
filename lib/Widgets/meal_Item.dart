@@ -9,7 +9,6 @@ class MealItem extends StatelessWidget {
   final Complexity complexity;
   final Affordability affordability;
   final int duration;
-  final Function removeItem;
 
   String get ComplexityTest {
     switch (complexity) {
@@ -51,7 +50,7 @@ class MealItem extends StatelessWidget {
       //when back button is pressed and at that time since no data is passed along result will be null while other way of popping is through
       //trash icon at that time meal ID is passed hence result mealID will be printed.
       if (result != null) {
-        removeItem(result);
+        //removeItem(result);
       }
     });
   }
@@ -63,7 +62,6 @@ class MealItem extends StatelessWidget {
     @required this.complexity,
     @required this.affordability,
     @required this.duration,
-    @required this.removeItem,
   });
   @override
   Widget build(BuildContext context) {
